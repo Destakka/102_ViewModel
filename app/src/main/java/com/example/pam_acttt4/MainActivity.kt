@@ -1,7 +1,6 @@
 package com.example.pam_acttt4
 
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -186,8 +185,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         jenisnya = cobaViewModel.jenisKL,
         teleponnya = cobaViewModel.noTelp,
         alamatnya = cobaViewModel.alamat,
-        namanya = cobaViewModel.namaUsr,
-
+        emailnya = cobaViewModel.email,
     )
 }
 
@@ -198,7 +196,7 @@ fun SelectJK(
 ){
     var selectedValue by rememberSaveable{ mutableStateOf("")}
 
-    Column( modifier = Modifier.padding(10.dp)) {
+    Row( modifier = Modifier.padding(10.dp)) {
         options.forEach{ item ->
             Row (
                 modifier = Modifier.selectable(
@@ -216,6 +214,7 @@ fun SelectJK(
                         onSelectionChange(item)
                     }
                 )
+
                 Text(item)
             }
         }
@@ -223,7 +222,7 @@ fun SelectJK(
 }
 
 @Composable
-fun TextHasil(namanya: String, teleponnya: String, jenisnya: String, alamatnya: String){
+fun TextHasil(teleponnya: String, jenisnya: String, alamatnya: String, emailnya: String){
     ElevatedCard (
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp
@@ -243,7 +242,7 @@ fun TextHasil(namanya: String, teleponnya: String, jenisnya: String, alamatnya: 
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 4.dp)
         )
-        Text(text = "Email : " + alamatnya,
+        Text(text = "Email : " + emailnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp)
         )
