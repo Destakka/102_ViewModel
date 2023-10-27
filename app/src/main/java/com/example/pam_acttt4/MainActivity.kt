@@ -1,6 +1,7 @@
 package com.example.pam_acttt4
 
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -117,6 +118,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     var textNama by remember { mutableStateOf("") }
     var textTlp by remember { mutableStateOf("") }
     var textAlt by remember { mutableStateOf("") }
+    var Emailtext by remember { mutableStateOf("") }
 
     val context = LocalContext.current
     val dataForm: DataForm
@@ -145,7 +147,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         }
     )
     OutlinedTextField(
-        value = textAlt,
+        value = Emailtext,
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
@@ -156,7 +158,18 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     )
     SelectJK(
         options = jenis.map { id -> context.resources.getString(id) },
-        onSelectionChange = {cobaViewModel.setjenisK(it)})
+        onSelectionChange = {cobaViewModel.setjenisK(it)}
+    )
+    OutlinedTextField(
+        value = textAlt,
+        singleLine = true,
+        shape = MaterialTheme.shapes.large,
+        modifier = Modifier.fillMaxWidth(),
+        label = {Text(text = "Alamat")},
+        onValueChange = {
+            textNama = it
+        }
+    )
     Button(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
@@ -173,7 +186,8 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         jenisnya = cobaViewModel.jenisKL,
         teleponnya = cobaViewModel.noTelp,
         alamatnya = cobaViewModel.alamat,
-        namanya = cobaViewModel.namaUsr
+        namanya = cobaViewModel.namaUsr,
+
     )
 }
 
