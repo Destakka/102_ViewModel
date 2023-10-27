@@ -52,7 +52,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
                 }
             }
         }
@@ -102,7 +101,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
-        label = {Text(text = "Nama lengkap")},
+        label = {Text(text = "Username")},
         onValueChange = {
             textNama = it
         }
@@ -123,7 +122,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
-        label = {Text(text = "Alamat")},
+        label = {Text(text = "Email")},
         onValueChange = {
             textAlt = it
         }
@@ -144,11 +143,10 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     }
     Spacer(modifier = Modifier.height(100.dp))
     TextHasil(
-        namanya = cobaViewModel.namaUsr,
-        teleponnya = cobaViewModel.noTelp,
         jenisnya = cobaViewModel.jenisKL,
-        alamatnya = cobaViewModel.alamat
-
+        teleponnya = cobaViewModel.noTelp,
+        alamatnya = cobaViewModel.alamat,
+        namanya = cobaViewModel.namaUsr
     )
 }
 
@@ -192,19 +190,19 @@ fun TextHasil(namanya: String, teleponnya: String, jenisnya: String, alamatnya: 
         modifier = Modifier
             .fillMaxWidth()
     ){
-        Text(text = "Nama : " + namanya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 4.dp)
-        )
-        Text(text = "Telepon : " + teleponnya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 5.dp)
-        )
         Text(text = "Jenis Kelamin : " + jenisnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 4.dp)
         )
+        Text(text = "Status : " + teleponnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        )
         Text(text = "Alamat : " + alamatnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 4.dp)
+        )
+        Text(text = "Email : " + alamatnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp)
         )
@@ -215,6 +213,6 @@ fun TextHasil(namanya: String, teleponnya: String, jenisnya: String, alamatnya: 
 @Composable
 fun GreetingPreview() {
     PAM_Acttt4Theme {
-        Greeting("Android")
+        TampilLayout()
     }
 }
